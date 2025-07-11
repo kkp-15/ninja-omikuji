@@ -25,9 +25,12 @@
       background: #fff0e5;
       border-radius: 10px;
       padding: 20px;
-      display: inline-block;
+      display: none;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       color: #333;
+    }
+    .result.show {
+      display: inline-block;
     }
     .result strong {
       color: #d44;
@@ -131,7 +134,9 @@
         year: 'numeric', month: 'long', day: 'numeric'
       });
 
-      document.getElementById("result").innerHTML = `
+      const resultBox = document.getElementById("result");
+      resultBox.classList.add("show");
+      resultBox.innerHTML = `
         ${today} の運勢は... <strong>${fortune}</strong><br>
         本日のラッキーアイテム: <em>${item}</em><br>
         ${comment}
