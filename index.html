@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html><html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>御神籤</title>
+  <meta property="og:image" content="https://kkp-15.github.io/ninja-omikuji/images/ogp.png">
+  <meta property="og:title" content="にんにん御神籤">
+  <meta property="og:description" content="今日の運勢と忍者アイテムを診断するでござる！">
   <style>
     body {
       font-family: 'sans-serif';
@@ -45,9 +47,7 @@
   <h1>御神籤</h1>
   <button onclick="drawOmikuji()">おみくじを引くでござる</button>
   <div class="result" id="result"></div>
-  <div class="share" id="share"></div>
-
-  <script>
+  <div class="share" id="share"></div>  <script>
     const fortunes = [
       { type: '大吉', rate: 69 },
       { type: '吉', rate: 30 },
@@ -73,14 +73,23 @@
         }
       }
       const item = items[Math.floor(Math.random() * items.length)];
+
+      let comment = '';
+      if (fortune === '大吉') comment = '運が爆発してるでござる🔥';
+      else if (fortune === '吉') comment = '平穏が一番でござる🍵';
+      else comment = '凶…しのび泣きでござる🥷💦';
+
+      const today = new Date().toLocaleDateString('ja-JP');
+
       document.getElementById("result").innerHTML = `
-        今日の当たりは... <strong>${fortune}</strong><br>
+        ${today} の当たりは... <strong>${fortune}</strong><br>
+        ${comment}<br>
         ラッキーアイテム: <em>${item}</em>
       `;
-      const shareText = `今日の御神籤は「${fortune}」\\nラッキーアイテム: ${item} #webninja`;
+
+      const shareText = `🥷 ${today} の御神籤は「${fortune}」🎴\n${comment}\nラッキーアイテム: ${item}\n#webninja #忍者診断 #今日の運勢\nhttps://kkp-15.github.io/ninja-omikuji/`;
       const shareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
       document.getElementById("share").innerHTML = `<a href="${shareURL}" target="_blank">Xで結果をシェア</a>`;
     }
-  </script>
-</body>
+  </script></body>
 </html>
