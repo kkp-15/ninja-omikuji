@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>御神籤</title>
+  <style>
+    body {
+      font-family: 'sans-serif';
+      background-color: #fff8f0;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    .result {
+      margin-top: 30px;
+      font-size: 1.5em;
+      line-height: 1.6;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #f3c5b2;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .share {
+      margin-top: 20px;
+    }
+    .share a {
+      display: inline-block;
+      background-color: #000;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>御神籤</h1>
+  <button onclick="drawOmikuji()">おみくじを引くでござる</button>
+  <div class="result" id="result"></div>
+  <div class="share" id="share"></div>
+
+  <script>
+    const fortunes = [
+      { type: '大吉', rate: 69 },
+      { type: '吉', rate: 30 },
+      { type: '凶', rate: 1 }
+    ];
+
+    const items = [
+      '筆', '巾着', 'ひょうたんの水筒', 'わらじ', 'かんざし',
+      '手ぬぐい', '干し柿', '扇子', '城', '刀', '巻物',
+      '風呂敷', '手裏剣', '印籠', 'くし', '恋文', 'おしろい',
+      '背負い籠', '吹き矢', '縄梯子', '煙玉', '足袋'
+    ];
+
+    function drawOmikuji() {
+      const rand = Math.random() * 100;
+      let fortune;
+      let acc = 0;
+      for (let f of fortunes) {
+        acc += f.rate;
+        if (rand < acc) {
+          fortune = f.type;
+          break;
+        }
+      }
+      const item = items[Math.floor(Math.random() * items.length)];
+      document.getElementById("result").innerHTML = `
+        今日の当たりは... <strong>${fortune}</strong><br>
+        ラッキーアイテム: <em>${item}</em>
+      `;
+      const shareText = `今日の御神籤は「${fortune}」\\nラッキーアイテム: ${item} #webninja`;
+      const shareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+      document.getElementById("share").innerHTML = `<a href="${shareURL}" target="_blank">Xで結果をシェア</a>`;
+    }
+  </script>
+</body>
+</html>
