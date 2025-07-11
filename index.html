@@ -120,7 +120,7 @@
         ${comment}
       `;
 
-      const shareText = `📅 ${today} の御神籤は「${fortune}」🎴\n本日のラッキーアイテム: ${item}\n${comment}\n\n#忍者\n#おみくじ\n#ラッキーアイテム\n#今日の運勢\nhttps://kkp-15.github.io/ninja-omikuji/`;
+      const shareText = `📅 ${today} のおみくじは「${fortune}」🎴\n本日のラッキーアイテム: ${item}\n${comment}\n\n#今日の運勢\nhttps://kkp-15.github.io/ninja-omikuji/`;
       const shareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
       document.getElementById("share").innerHTML = `<a href="${shareURL}" target="_blank">Xで結果をシェア</a>`;
     }
