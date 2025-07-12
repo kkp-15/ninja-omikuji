@@ -6,8 +6,6 @@
   <meta property="og:image" content="https://kkp-15.github.io/ninja-omikuji/images/ogp.png">
   <meta property="og:title" content="忍者のおみくじで今日の運勢をチェック">
   <meta property="og:description" content="運だめし＆ラッキーアイテムでゆるっと笑える一日を！">
-  
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LM85GJN0L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -15,7 +13,6 @@
     gtag('js', new Date());
     gtag('config', 'G-2LM85GJN0L');
   </script>
-
   <style>
     body {
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
@@ -28,8 +25,19 @@
       font-size: 2.2em;
       color: #d44;
     }
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #f3c5b2;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #222;
+    }
     .result {
-      margin-top: 30px;
+      margin: 30px auto 0;
       font-size: 1.4em;
       line-height: 1.8;
       background: #fff0e5;
@@ -38,9 +46,10 @@
       display: none;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       color: #333;
+      max-width: 500px;
     }
     .result.show {
-      display: inline-block;
+      display: block;
     }
     .result strong {
       color: #d44;
@@ -49,15 +58,6 @@
     .result em {
       color: #1d9bf0;
       font-weight: bold;
-    }
-    button {
-      padding: 15px 30px;
-      font-size: 1.2em;
-      background-color: #f3c5b2;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      color: #222;
     }
     .share {
       margin-top: 20px;
@@ -99,14 +99,12 @@
   <div class="credit">
     <a href="https://x.com/kkp_webninja" target="_blank" class="x-button">X @kkp_webninja</a>
   </div>
-
   <script>
     const fortunes = [
       { type: '大吉', rate: 69 },
       { type: '吉', rate: 30 },
       { type: '凶', rate: 1 }
     ];
-
     const items = [
       '筆', 'わらじ', 'かんざし', '干し柿', '扇子', '城', '刀', '巻物',
       '手裏剣', '印籠', 'くし', '恋文', '足袋',
@@ -120,7 +118,6 @@
       'うまい棒なっとう味', 'ビックリマンチョコのシール', 'チェルシー',
       'カール', '牛乳瓶のフタ', '透明なコーラ'
     ];
-
     const comments = {
       '大吉': [
         '大吉！今日は全力で推しを推せる日。',
@@ -153,7 +150,6 @@
         '凶のくせにちょっと当たってるのムカつく。'
       ]
     };
-
     function drawOmikuji() {
       const rand = Math.random() * 100;
       let fortune;
@@ -165,15 +161,12 @@
           break;
         }
       }
-
       const item = items[Math.floor(Math.random() * items.length)];
       const commentOptions = comments[fortune];
       const comment = commentOptions[Math.floor(Math.random() * commentOptions.length)];
-
       const today = new Date().toLocaleDateString('ja-JP', {
         year: 'numeric', month: 'long', day: 'numeric'
       });
-
       const resultBox = document.getElementById("result");
       resultBox.classList.add("show");
       resultBox.innerHTML = `
@@ -181,8 +174,12 @@
         本日のラッキーアイテム: <em>${item}</em><br>
         ${comment}
       `;
+      const shareText = `📅 ${today} のおみくじは「${fortune}」🎴
+本日のラッキーアイテム: ${item}
+${comment}
 
-      const shareText = `📅 ${today} のおみくじは「${fortune}」🎴\n本日のラッキーアイテム: ${item}\n${comment}\n\n#今日の運勢\nhttps://kkp-15.github.io/ninja-omikuji/`;
+#今日の運勢
+https://kkp-15.github.io/ninja-omikuji/`;
       const shareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
       document.getElementById("share").innerHTML = `<a href="${shareURL}" target="_blank">Xで結果をシェア</a>`;
     }
