@@ -6,6 +6,16 @@
   <meta property="og:image" content="https://kkp-15.github.io/ninja-omikuji/images/ogp.png">
   <meta property="og:title" content="忍者のおみくじで今日の運勢をチェック">
   <meta property="og:description" content="運だめし＆ラッキーアイテムでゆるっと笑える一日を！">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LM85GJN0L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-2LM85GJN0L');
+  </script>
+
   <style>
     body {
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
@@ -85,9 +95,12 @@
   <h1>御神籤</h1>
   <button onclick="drawOmikuji()">おみくじを引く</button>
   <div class="result" id="result"></div>
-  <div class="share" id="share"></div>  <div class="credit">
+  <div class="share" id="share"></div>
+  <div class="credit">
     <a href="https://x.com/kkp_webninja" target="_blank" class="x-button">X @kkp_webninja</a>
-  </div>  <script>
+  </div>
+
+  <script>
     const fortunes = [
       { type: '大吉', rate: 69 },
       { type: '吉', rate: 30 },
@@ -173,5 +186,6 @@
       const shareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
       document.getElementById("share").innerHTML = `<a href="${shareURL}" target="_blank">Xで結果をシェア</a>`;
     }
-  </script></body>
+  </script>
+</body>
 </html>
